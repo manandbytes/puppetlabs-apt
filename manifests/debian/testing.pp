@@ -1,6 +1,8 @@
 # testing.pp
 
-class apt::debian::testing {
+class apt::debian::testing  (
+  $location = 'http://debian.mirror.iweb.ca/debian/'
+  ) {
   include apt
 
   # deb http://debian.mirror.iweb.ca/debian/ testing main contrib non-free
@@ -10,7 +12,7 @@ class apt::debian::testing {
   # debian-archive-keyring
 
   apt::source { 'debian_testing':
-    location          => 'http://debian.mirror.iweb.ca/debian/',
+    location          => $apt::debian::testing::location,
     release           => 'testing',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',

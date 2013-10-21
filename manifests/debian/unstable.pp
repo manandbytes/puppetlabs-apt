@@ -2,6 +2,7 @@
 
 class apt::debian::unstable (
   $location = 'http://debian.mirror.iweb.ca/debian/'
+  $include_src = false
   ) {
 
   include apt
@@ -20,5 +21,6 @@ class apt::debian::unstable (
     key               => '55BE302B',
     key_server        => 'subkeys.pgp.net',
     pin               => '-10',
+    include_src       => $apt::debian::unstable::include_src
   }
 }
